@@ -1,0 +1,14 @@
+
+RewriteEngine On
+<Limit PUT DELETE >
+order deny,allow
+deny from all
+</Limit>
+
+Options -Indexes
+
+# Get the files that do not exist and route to the index.php page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+
